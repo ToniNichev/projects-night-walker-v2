@@ -12,7 +12,24 @@ const port = new SerialPort({
 });
 
 
-// sendFile will go here
+app.get('/send-data', function(req, res) {
+  const data = req.query.data;
+  port.write(data, function(err) {
+    if (err) {
+      return console.log('Error on write: ', err.message)
+    }
+    console.log('message written');
+    //port.close();
+  })
+  
+  // Open errors will be emitted as an error event
+  port.on('error', function(err) {
+    console.log('Error: ', err.message)
+  })  
+
+  res.send("OK");
+});
+
 app.get('/', function(req, res) {
 
 
