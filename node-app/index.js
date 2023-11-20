@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 
 
 
-    port.write('toni', function(err) {
+    port.write('toni 123', function(err) {
         if (err) {
           return console.log('Error on write: ', err.message)
         }
