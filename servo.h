@@ -31,7 +31,8 @@ class Servo {
       }
       int s = (pin == 2 || pin == 3 || pin > 5) ? 1 : -1;
       float val = 270 + ((pos + trim) * s);
-      pwm.setPWM(0, 0, val);
+      pwm.setPWM(pin, 0, val);
+      Serial.println(pin);
       return false;
     }
 };

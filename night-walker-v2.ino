@@ -39,9 +39,9 @@ void setup() {
 
 void loop() {
 
-  delay(10);
+  delay(50);
 
-    for(int q= 0; q < 4; q++) {
+    for(int q = 0; q < 4; q++) {
       servo[q].moveServo(step[q].pos, step[q].speed);
     }
 
@@ -78,8 +78,8 @@ void loop() {
       step[port].pos = angle;
       step[port].speed = speed;
 
-      Serial.println(port);
-       Serial.println(step[port].pos);
+      // Serial.println(port);
+      // Serial.println(step[port].pos);
 
       // Serial.println(static_cast<int>(floatArray[0]));
       // Serial.println(floatArray[1]);
