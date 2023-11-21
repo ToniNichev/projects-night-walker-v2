@@ -39,7 +39,7 @@ void setup() {
 
 void loop() {
 
-  delay(50);
+  delay(10);
 
     for(int q = 0; q < 4; q++) {
       servo[q].moveServo(step[q].pos, step[q].speed);
@@ -51,7 +51,6 @@ void loop() {
           floatArray[i] = 0.0;
         }
       String dataString = BTserial.readStringUntil('\n');
-
 
 
       // Use strtok() to tokenize the "names" string using the comma (',') as the

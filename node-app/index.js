@@ -30,28 +30,12 @@ app.get('/send-data', function(req, res) {
   res.send("OK");
 });
 
+
 app.get('/', function(req, res) {
-
-
-
-
-
-    port.write('toni 123', function(err) {
-        if (err) {
-          return console.log('Error on write: ', err.message)
-        }
-        console.log('message written');
-        //port.close();
-      })
-      
-      // Open errors will be emitted as an error event
-      port.on('error', function(err) {
-        console.log('Error: ', err.message)
-      })
-
-    
     res.sendFile(path.join(__dirname, '/src/index.html'));
 });
+
+app.use('/static', express.static('public'));
 
 app.listen(appPort);
 console.log('Server started at http://localhost:' + appPort);
