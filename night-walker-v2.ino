@@ -10,6 +10,7 @@ uint8_t ID;
 int count = 0;
 Servo servo[8];
 Step step[8];
+float floatArray[10];
 
 void setup() {
   // HC-05 default serial speed for AT mode is 38400
@@ -23,13 +24,9 @@ void setup() {
   // float trim[] = {0,0,10,0,0,0,-15,0};
   // legs.init(trim);
 
-  step[0].pos = 0;
-  step[1].pos = 0;
-  step[2].pos = 0;
-  step[3].pos = 0;
-
   for(int q = 0; q < 4; q++) {
-    servo[q].pin = 0;
+    step[q].pos = 0;
+    servo[q].pin = q;
     servo[q].trim = 0;
     pwm.setPWM(q, 0, 270);
   }
@@ -41,17 +38,50 @@ void setup() {
 
 
 void loop() {
-    servo[0].moveServo(step[0].pos, 1);
-  if (BTserial.available()) {
-    String dataString = "";
-    while (BTserial.available()) {
-      char c = BTserial.read();
-      dataString += c;
+
+  delay(10);
+
+    for(int q= 0; q < 4; q++) {
+      servo[q].moveServo(step[q].pos, step[q].speed);
     }
-    // Convert data string to float value
-    float dataValue = atof(dataString.c_str());
-    //step[0].pos = dataValue;
-    Serial.println(dataValue);
-    Serial.println("--------------------------------");
-  }
+
+    if (BTserial.available()) {
+        // Initialize the array
+        for (int i = 0; i < 10; i++) {
+          floatArray[i] = 0.0;
+        }
+      String dataString = BTserial.readStringUntil('\n');
+
+
+
+      // Use strtok() to tokenize the "names" string using the comma (',') as the
+      // delimiter. This call initializes the strtok() function with the input
+      // string and the first token.
+      char *token = strtok(dataString.c_str(), ",");
+
+      int count = 0;
+      // Enter a loop to process each token until there are no more tokens left.
+      while (token != NULL) {
+        // Process the current token, which represents a name.
+        // Print the name to the serial monitor.        
+        floatArray[count] = atof(token);
+        count ++;
+        // Get the next token in the "names" string.
+        // Subsequent calls to strtok() with a NULL pointer continue from where the
+        // last token was found.
+        token = strtok(NULL, ",");
+      }
+
+      int port = static_cast<int>(floatArray[0]);
+      float angle = floatArray[1];
+      float speed = floatArray[2];
+      step[port].pos = angle;
+      step[port].speed = speed;
+
+      Serial.println(port);
+       Serial.println(step[port].pos);
+
+      // Serial.println(static_cast<int>(floatArray[0]));
+      // Serial.println(floatArray[1]);
+    }
 }
