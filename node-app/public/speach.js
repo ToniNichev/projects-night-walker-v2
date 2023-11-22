@@ -38,10 +38,8 @@ recognition.onend = function() {
 
 function initSpeach() {
 	recognition.start(); 
-	// document.getElementById('voice_recognition_status').innerHTML('listening ...');
+	document.getElementById('voice_recognition_status').innerHTML = 'listening ...';
 }
-
-
 
 
 

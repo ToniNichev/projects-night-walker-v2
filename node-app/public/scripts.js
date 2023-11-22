@@ -28,17 +28,19 @@ function loopThroughData() {
 
 function execute() {
     pos = 0;
-    var data = document.querySelector('body > main > textarea').value;
+    var data = document.getElementById('text-data').value;
     sequence = data.split("\n");
     loopThroughData();       
 }
 
 function centerAll() {
-    document.querySelector('body > main > textarea').value = '0,0,1, 2,0,1, 4,0,1, 6,0,1';
+    //document.getElementById('text-data').value = '0,0,1, 1,0,1, 2,0,1, 3,0,1, 4,0,1, 5,0,1, 6,0,1';
+    sendData('0,0,1, 1,0,1, 2,0,1, 3,0,1, 4,0,1, 5,0,1, 6,0,1');
 }
 
 function upAll() {
-    document.querySelector('body > main > textarea').value = '0,100,1, 2,100,1, 4,100,1, 6,100,1';
+    // document.getElementById('text-data').value = '0,100,1, 2,100,1, 4,100,1, 6,100,1';
+    sendData('0,100,1, 2,100,1, 4,100,1, 6,100,1');
 }
 
 
