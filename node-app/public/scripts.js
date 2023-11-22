@@ -1,5 +1,6 @@
 
 function sendData(data) {
+    data = data.split(' ').join('');
     var url = 'http://localhost:8080/send-data?data=' + data;
     console.log(url);
     fetch(url)
@@ -14,19 +15,18 @@ var pos = 0;
 var sequence;
 
 function loopThroughData() {
-    pos = 0;
     sendData(sequence[pos]);
-    pos ++;
-    if(pos < sequence.length) {
+    if(pos < sequence.length - 1) {
+        pos ++;
         setTimeout(() => {
-            var data = sequence[pos];
-            sendData(data);
-        }, 1040);
+            loopThroughData();
+        }, 2000);
     }
 }
 
 
 function execute() {
+    pos = 0;
     var data = document.querySelector('body > main > textarea').value;
     sequence = data.split("\n");
     loopThroughData();       
