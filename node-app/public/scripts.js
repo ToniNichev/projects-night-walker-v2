@@ -25,6 +25,7 @@ function loopThroughData() {
 }
 
 
+
 function execute() {
     pos = 0;
     var data = document.querySelector('body > main > textarea').value;
@@ -33,9 +34,13 @@ function execute() {
 }
 
 function centerAll() {
-    sendData([0,0,1]);
-    setTimeout(() => {sendData([2,0,1]);}, 1070);
+    document.querySelector('body > main > textarea').value = '0,0,1, 2,0,1, 4,0,1, 6,0,1';
 }
+
+function upAll() {
+    document.querySelector('body > main > textarea').value = '0,100,1, 2,100,1, 4,100,1, 6,100,1';
+}
+
 
 function centerA() {
     sendData([0,0,1]);

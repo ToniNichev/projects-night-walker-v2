@@ -1,18 +1,7 @@
 var availableCommands = {
-	lightson: ['lights', 'on'],
-	lightson2: ['turn', 'on', 'the', 'lights', 'light'],
-	lightson3: ['lights', 'please'],
-
-
-	lightsoff: ['lights', 'off'],
-	lightsoff2:['turn', 'off', 'the', 'lights'],	
-	lightsoff3:['shut', 'down', 'the', 'lights'],	
-
-	lesslight: [ 'apply', 'less', 'light', 'lights'],	
-	lesslight1: [ 'dim', 'lights', 'light', 'the'],	
-
-	morelight: [ 'apply', 'more', 'light', 'lights'],
-
+	standup: ['robot', 'stand', 'up'],    
+	liedown: ['robot', 'lie', 'down'],
+    liedown: ['robot', 'go', 'to', 'sleep'],
 };
 
 
@@ -21,7 +10,6 @@ var commandsMatch = {}	;
 
 var recognition = new webkitSpeechRecognition();
 
-var hueController = new hue_controller();
 
 recognition.continuous = true;
 recognition.interimResults = true;
@@ -48,15 +36,13 @@ recognition.onend = function() {
 };
 */
 
-$( document ).ready(function() {
+function initSpeach() {
 	recognition.start(); 
-	$('#voice_recognition_status').html('listening ...');
-});
+	// document.getElementById('voice_recognition_status').innerHTML('listening ...');
+}
 
 
-//////////////////////////////////
 
-var hueController = new hue_controller();
 
 
 function analyzeAction(speach) {
@@ -105,23 +91,23 @@ function analyzeAction(speach) {
 
 function triggerAction(selectedCommand) {
 
-
-
 	console.log(">>>> selected command:" + selectedCommand);
 
 	switch (selectedCommand) {
-		case 'lightson':
-			hueController.allLightsToggle(true);
+		case 'standup':
+			upAll();
+            execute();
 			break;
-		case 'lightsoff':
-			hueController.allLightsToggle(false	);
+		case 'liedown':
+			centerAll();
+            execute();
 			break;			
 
 		case 'lesslight':
-			hueController.allLightsBri(100);
+			
 			break;
 		case 'morelight':
-			hueController.allLightsBri(200);
+			
 			break;
 
 	}

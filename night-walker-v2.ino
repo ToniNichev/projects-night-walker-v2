@@ -22,11 +22,12 @@ void setup() {
   pwm.setPWMFreq(SERVO_FREQ);  // Analog servos run at ~50 Hz updates  
 
   // initialize servos
+  float trim[] = {0,0,0,0,0,0,-15,0};
   for(int q = 0; q < 8; q++) {
     step[q].pos = 0;
     servo[q].pin = q;
-    servo[q].trim = 0;
-    pwm.setPWM(q, 0, 270);
+    servo[q].trim = trim[q];
+    pwm.setPWM(q, 0, 270 + trim[q]);
   }
 
   delay(2000);
