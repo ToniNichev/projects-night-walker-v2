@@ -20,5 +20,29 @@
         </div>
       </div>
       <script src="script.js"></script>
+      <script>
+        const options = {
+          onChangeCallback: function () {
+            console.log("On change ....");
+          }, 
+          SliderId: 0, 
+          Min: 0,
+          Max: 100,
+          Step: 1,
+          ShowPrecision: 2,
+          SetRangeValue: function() {
+            console.log("Set SetRangeValue");
+          },
+          setTempAndHumidity: function() {
+
+          },
+          onEditingMode: function() {
+            
+          }
+        };
+
+        Dialer(options);
+
+      </script>
 </body>
 </html>

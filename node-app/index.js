@@ -7,11 +7,12 @@ const appPort = process.env.PORT || 8080;
 let noBluetooth = false;
 
 const commandLineArguments = process.argv.slice(2);
+let port;
 if (commandLineArguments.includes('-nobluetooth')) {
   noBluetooth = true;
 } else {
-  // Create a port
-  const port = new SerialPort({
+  // Create a port  
+  port = new SerialPort({
     path: '/dev/tty.HC-05',
     baudRate: 9600,
   });

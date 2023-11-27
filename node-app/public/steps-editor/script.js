@@ -17,7 +17,7 @@ let dialerSetUp = [];
 
 const Dialer = ({onChangeCallback, SliderId, Min, Max, Step, ShowPrecision, SetRangeValue, setTempAndHumidity, onEditingMode}) => {  
 
-  console.log("!@!@!@!@!@!@!@");
+  console.log("Steps editor library loaded");
   let beginDrag = false;
   let val = 0;
   const min = parseFloat(Min);
@@ -126,6 +126,3 @@ const Dialer = ({onChangeCallback, SliderId, Min, Max, Step, ShowPrecision, SetR
     });  
 
 }
-
-
-Dialer(function () {}, 0, )

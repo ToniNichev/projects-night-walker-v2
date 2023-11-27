@@ -24,6 +24,8 @@ button {
     border-radius: 5px;
     cursor: pointer;
     height: 40px;
+    background-color: rgb(245, 245, 71);
+    color: black;
 }
 
 .button-full-width {
