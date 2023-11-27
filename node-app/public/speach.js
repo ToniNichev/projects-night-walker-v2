@@ -89,7 +89,7 @@ function analyzeAction(speach) {
 
 function triggerAction(selectedCommand) {
 
-	console.log(">>>> selected command:" + selectedCommand);
+	console.log(">>>> selected command:" + selectedCommand);	
 
 	switch (selectedCommand) {
 		case 'standup':
