@@ -49,7 +49,6 @@ const Dialer = ({onChangeCallback, SliderId, Min, Max, Step, ShowPrecision, SetR
   // SetRangeValue(setValue); // pass setValue to be accessed from parent component.
 
   const mouseMoveAction = (e) => {
-    console.log("MOVE!!!");
     if(beginDrag == false) return;
 
     const center_x = ( document.querySelectorAll('.circle')[SliderId].offsetWidth / 2) + document.querySelectorAll('.circle')[SliderId].offsetLeft;

@@ -1,7 +1,7 @@
 var availableCommands = {
-	standup: ['robot', 'stand', 'up'],    
-	liedown: ['robot', 'lie', 'down'],
-    liedown: ['robot', 'go', 'to', 'sleep'],
+	standup: ['alison', 'stand', 'up'],    
+	liedown: ['alison', 'lie', 'down'],
+    liedown: ['alison', 'go', 'to', 'sleep'],
 };
 
 

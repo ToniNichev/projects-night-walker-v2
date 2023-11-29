@@ -2,15 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The night walker v2</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The night walker v2</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="dialer.js"></script>
 </head>
 
 <body>
 
-    <div class="wrapper">
+  <div class="wrapper">
+      <div class="rearLegs">
+          <div class="circle">
+            <div class="labelPrimary"> -- </div>
+            <div class="labelSecondary"> -- </div>
+            <div class="labelThird"> -- </div>
+            <div class="dot"></div>
+          </div>
+
+          <div class="circle">
+            <div class="labelPrimary"> -- </div>
+            <div class="labelSecondary"> -- </div>
+            <div class="labelThird"> -- </div>
+            <div class="dot"></div>
+          </div>
+        </div>
+
+      <div class="frontLegs">
+        <div class="circle">
+          <div class="labelPrimary"> -- </div>
+          <div class="labelSecondary"> -- </div>
+          <div class="labelThird"> -- </div>
+          <div class="dot"></div>
+        </div>
 
         <div class="circle">
           <div class="labelPrimary"> -- </div>
@@ -19,30 +43,42 @@
           <div class="dot"></div>
         </div>
       </div>
-      <script src="script.js"></script>
-      <script>
-        const options = {
-          onChangeCallback: function () {
-            console.log("On change ....");
-          }, 
-          SliderId: 0, 
-          Min: 0,
-          Max: 100,
-          Step: 1,
-          ShowPrecision: 2,
-          SetRangeValue: function() {
-            console.log("Set SetRangeValue");
-          },
-          setTempAndHumidity: function() {
+    </div>
 
-          },
-          onEditingMode: function() {
-            
-          }
-        };
+    <div class="wrapper">
+      <div class="rearLegs">
+          <div class="circle">
+            <div class="labelPrimary"> -- </div>
+            <div class="labelSecondary"> -- </div>
+            <div class="labelThird"> -- </div>
+            <div class="dot"></div>
+          </div>
 
-        Dialer(options);
+          <div class="circle">
+            <div class="labelPrimary"> -- </div>
+            <div class="labelSecondary"> -- </div>
+            <div class="labelThird"> -- </div>
+            <div class="dot"></div>
+          </div>
+        </div>
 
-      </script>
+      <div class="frontLegs">
+        <div class="circle">
+          <div class="labelPrimary"> -- </div>
+          <div class="labelSecondary"> -- </div>
+          <div class="labelThird"> -- </div>
+          <div class="dot"></div>
+        </div>
+
+        <div class="circle">
+          <div class="labelPrimary"> -- </div>
+          <div class="labelSecondary"> -- </div>
+          <div class="labelThird"> -- </div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>    
+    <script src="scripts.js"></script>
 </body>
+
 </html>
