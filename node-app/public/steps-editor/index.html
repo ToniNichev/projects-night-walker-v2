@@ -6,27 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The night walker v2</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../styles.css">
   <script src="dialer.js"></script>
+  <script src="../scripts.js"></script>
 </head>
 
 <body>
+  <div class="dialers">
 
-  <div class="wrapper">
+    <div class="wrapper">
       <div class="rearLegs">
-          <div class="circle">
-            <div class="labelPrimary"> -- </div>
-            <div class="labelSecondary"> -- </div>
-            <div class="labelThird"> -- </div>
-            <div class="dot"></div>
-          </div>
-
-          <div class="circle">
-            <div class="labelPrimary"> -- </div>
-            <div class="labelSecondary"> -- </div>
-            <div class="labelThird"> -- </div>
-            <div class="dot"></div>
-          </div>
+        <div class="circle">
+          <div class="labelPrimary"> -- </div>
+          <div class="labelSecondary"> -- </div>
+          <div class="labelThird"> -- </div>
+          <div class="dot"></div>
         </div>
+
+        <div class="circle">
+          <div class="labelPrimary"> -- </div>
+          <div class="labelSecondary"> -- </div>
+          <div class="labelThird"> -- </div>
+          <div class="dot"></div>
+        </div>
+      </div>
 
       <div class="frontLegs">
         <div class="circle">
@@ -47,20 +50,20 @@
 
     <div class="wrapper">
       <div class="rearLegs">
-          <div class="circle">
-            <div class="labelPrimary"> -- </div>
-            <div class="labelSecondary"> -- </div>
-            <div class="labelThird"> -- </div>
-            <div class="dot"></div>
-          </div>
-
-          <div class="circle">
-            <div class="labelPrimary"> -- </div>
-            <div class="labelSecondary"> -- </div>
-            <div class="labelThird"> -- </div>
-            <div class="dot"></div>
-          </div>
+        <div class="circle">
+          <div class="labelPrimary"> -- </div>
+          <div class="labelSecondary"> -- </div>
+          <div class="labelThird"> -- </div>
+          <div class="dot"></div>
         </div>
+
+        <div class="circle">
+          <div class="labelPrimary"> -- </div>
+          <div class="labelSecondary"> -- </div>
+          <div class="labelThird"> -- </div>
+          <div class="dot"></div>
+        </div>
+      </div>
 
       <div class="frontLegs">
         <div class="circle">
@@ -77,8 +80,13 @@
           <div class="dot"></div>
         </div>
       </div>
-    </div>    
-    <script src="scripts.js"></script>
+    </div>
+  </div>
+  <div class="commands">
+    <textarea onClick="readCurentLine()" id="text-data">0,180,1, 2,180,1, 4,180,1, 6,180,1</textarea>
+    <p><button class="button-full-width" onMouseUp="execute()"> ▶</button></p>
+  </div>
+  <script src="scripts.js"></script>
 </body>
 
 </html>

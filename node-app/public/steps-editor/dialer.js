@@ -17,9 +17,9 @@ let dialerSetUp = [];
 
 const Dialer = ({onChangeCallback, SliderId, Min, Max, Step, ShowPrecision, SetRangeValue, setTempAndHumidity, onEditingMode}) => {  
 
-  console.log("Steps editor library loaded");
+  
   let beginDrag = false;
-  let val = 0;
+  let Val = 0;
   const min = parseFloat(Min);
   const max = parseFloat(Max);
   const step = parseFloat(Step);
@@ -34,13 +34,14 @@ const Dialer = ({onChangeCallback, SliderId, Min, Max, Step, ShowPrecision, SetR
   const setValue = (val) => {
     val = parseFloat(val).toFixed(ShowPrecision);
     const rotateAngle = (360 / (max - min) ) * val;
-    if(typeof document == 'undefined') return;
-    document.querySelectorAll('.labelPrimary')[SliderId].innerText = val + ' °C';      
+    Val = rotateAngle;
+    document.querySelectorAll('.labelPrimary')[SliderId].innerText = val + ' °';      
     document.querySelectorAll('.circle > .dot')[SliderId].style.transform = `rotate(${rotateAngle}deg)`;
   }
 
   const _setTempAndHumidity = (humidity, temperature) => {
-    document.querySelectorAll('.labelSecondary')[SliderId].innerText = parseFloat(temperature).toFixed(ShowPrecision) + ' °C';
+    debugger;
+    document.querySelectorAll('.labelSecondary')[SliderId].innerText = parseFloat(temperature).toFixed(ShowPrecision) + ' °';
     document.querySelectorAll('.labelThird')[SliderId].innerText = parseFloat(humidity).toFixed(ShowPrecision);
   }
 
@@ -77,7 +78,12 @@ const Dialer = ({onChangeCallback, SliderId, Min, Max, Step, ShowPrecision, SetR
     const a = (Math.round((angle / ratio) * step) / step);
 
     val = (m + a).toFixed(ShowPrecision);
+    Val = val;
     document.querySelectorAll('.labelPrimary')[SliderId].innerText = val;  
+  }
+
+  const getVal = () => {
+    return Val;
   }
 
   const dialerPressed = () => {
@@ -123,5 +129,13 @@ const Dialer = ({onChangeCallback, SliderId, Min, Max, Step, ShowPrecision, SetR
     document.addEventListener('touchmove', e => {
       mouseMoveAction(e);
     });  
+
+    return {
+      Min,
+      Max,
+      getVal,
+      setValue: setValue,
+      setTempAndHumidity: _setTempAndHumidity
+    }
 
 }

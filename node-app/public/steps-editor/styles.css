@@ -5,6 +5,9 @@ body {
   background-color: rgb(188, 199, 246);
 }
 
+.dialers {
+  display: flex;
+}
 
 .wrapper {
   display: flex;
