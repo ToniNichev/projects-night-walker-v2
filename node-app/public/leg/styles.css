@@ -14,8 +14,6 @@ body {
 
 
 .legContainer {
-    top: 100px;
-    left: 50px;
     width: 200px;
     height: 50px;
     border: 1px solid #ddd;
@@ -23,4 +21,14 @@ body {
     transform-origin: center left;
     cursor: pointer;
     position: relative;
+}
+
+.legOne {
+    top: 100px;
+    left: 50px;
+}
+
+.legTwo {
+    top: 100px;
+    left: 350px;
 }
