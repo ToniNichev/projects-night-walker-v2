@@ -37,7 +37,7 @@
         start[id] = 1;
 
         startX[id] = e.clientX - activeEditingContainer.offsetLeft;
-        startY[id] = e.clientY; // - activeEditingContainer.offsetTop;
+        startY[id] = e.clientY - activeEditingContainer.offsetTop;
       });
     });
 
@@ -45,8 +45,8 @@
       if (activeEditingContainer == null)
         return;
       const id = activeEditingContainer.getAttribute('data-id');      
-      const xDiff = e.clientX - startX[id];
-      const yDiff = e.clientY - startY[id];
+      const xDiff = (e.clientX - activeEditingContainer.offsetLeft);
+      const yDiff = (e.clientY - activeEditingContainer.offsetTop);
 
 
       angle[id] = Math.atan2(yDiff, xDiff) * 180 / Math.PI;
