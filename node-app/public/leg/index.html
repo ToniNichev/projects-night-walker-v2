@@ -10,28 +10,51 @@
 </head>
 
 <body>
-  <div id="container"></div>
-
+  <h1>Test 123</h1>
+    <div id="mainScreen">
+      <div class="legContainer"></div>
+    </div>
   <script>
-      const container = document.getElementById('container');
+    const mainScreen = document.getElementById('mainScreen');
+    const container = document.querySelectorAll('.legContainer')[0];
 
-      container.addEventListener('mousedown', (e) => {
-          const startX = e.clientX;
-          const startY = e.clientY;
+    function getLegCoordinates(leg) {
+      var screenX = mainScreen.offsetLeft;
+      var screenY = mainScreen.offsetTop;
 
-          document.addEventListener('mousemove', (e) => {
-              const xDiff = e.clientX - startX;
-              const yDiff = e.clientY - startY;
-              
+      var legX = leg.offsetLeft;
+      var legY = leg.offsetTop;   
+      return { x: legX - screenX, y: legY - screenY};   
+    }
 
-              const angle = Math.atan2(yDiff, xDiff) * 180 / Math.PI;
-              container.style.transform = `rotate(${angle}deg)`;
-          });
 
-          document.addEventListener('mouseup', () => {
-              document.removeEventListener('mousemove', () => {});
-          });
+
+
+    container.addEventListener('mousedown', (e) => {
+      var leg = document.querySelectorAll('.legContainer')[0];
+      var legXY = getLegCoordinates(leg);
+
+      const startX = e.clientX - container.offsetLeft;
+      const startY = e.clientY;
+      console.log(container.offsetLeft);
+      /*
+      const startX = e.clientX;
+      const startY = e.clientY;
+      */
+
+      document.addEventListener('mousemove', (e) => {
+        const xDiff = e.clientX - startX;
+        const yDiff = e.clientY - startY;
+
+
+        const angle = Math.atan2(yDiff, xDiff) * 180 / Math.PI;
+        container.style.transform = `rotate(${angle}deg)`;
       });
+
+      document.addEventListener('mouseup', () => {
+        document.removeEventListener('mousemove', () => { });
+      });
+    });
   </script>
 </body>
 

@@ -1,16 +1,26 @@
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+
 }
-#container {
+
+.container {
+}
+
+#mainScreen {
+    height: 400px;
+    background: green;
+    margin: auto; width: 800px
+}
+
+
+
+.legContainer {
+    top: 100px;
+    left: 50px;
     width: 200px;
     height: 100px;
     border: 1px solid #ddd;
     background-color: #eee;
     transform-origin: center left;
     cursor: pointer;
+    position: relative;
 }
