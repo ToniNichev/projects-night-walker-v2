@@ -40,7 +40,6 @@ const Dialer = ({onChangeCallback, SliderId, Min, Max, Step, ShowPrecision, SetR
   }
 
   const _setTempAndHumidity = (humidity, temperature) => {
-    debugger;
     document.querySelectorAll('.labelSecondary')[SliderId].innerText = parseFloat(temperature).toFixed(ShowPrecision) + ' °';
     document.querySelectorAll('.labelThird')[SliderId].innerText = parseFloat(humidity).toFixed(ShowPrecision);
   }

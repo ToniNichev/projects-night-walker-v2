@@ -20,7 +20,7 @@ function loopThroughData() {
         pos ++;
         setTimeout(() => {
             loopThroughData();
-        }, 2000);
+        }, 4000);
     }
 }
 

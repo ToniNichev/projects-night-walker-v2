@@ -13,6 +13,7 @@ body {
   display: flex;
 }
 
+
 .circle {
   margin: 40px;
   position: relative;
@@ -66,7 +67,7 @@ body {
 }
 
 .circle .dot:active {
-  width: 10%;
+  width: 15%;
   padding-bottom: 10%;
   left: 44%;
 }

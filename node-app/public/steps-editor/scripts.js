@@ -1,4 +1,4 @@
-function setDialerToServoCommand() {
+function setCodeToDialerMove() {
   const textarea = document.getElementById('text-data');
   const c = getLineNumberAndColumnIndex(textarea);
   let commands = '';
@@ -21,13 +21,13 @@ var options = {
       console.log("On change:", deviceId, requiredTemperature);
       const servoId = 7 - deviceId;
       const rotate = requiredTemperature;
-      setDialerToServoCommand();
+      setCodeToDialerMove();
 
     },
     SliderId: 0,
-    Min: 0,
-    Max: 360,
-    Step: 1,
+    Min: -100,
+    Max: 460,
+    Step: 1 ,
     ShowPrecision: 2,
     SetRangeValue: function () {
       console.log("Set SetRangeValue");
@@ -41,9 +41,18 @@ var options = {
   var dialers = [];
 
   for(var i = 0; i < 8; i ++) {
+    if(i % 2 === 1) {
+      options.Min = -100;
+      options.Max = 460;
+    }
+    else {
+      options.Min = 280;
+      options.Max = -280;      
+    }
+
     options.SliderId  = i;
     dialers[i] = Dialer(options);
-    dialers[i].setValue(90);
+    //dialers[i].setValue(90);
   }
 
 function getLineNumberAndColumnIndex(textarea){
@@ -58,5 +67,11 @@ function readCurentLine() {
     const textarea = document.getElementById('text-data');
     const textAreaPos = getLineNumberAndColumnIndex(textarea); 
     const currentLine = textarea.value.split("\n")[textAreaPos.lineNumber - 1];
-    console.log(currentLine);    
+    //console.log(currentLine);  
+    arrayToDialPosition(currentLine.split(","));  
+}
+
+function arrayToDialPosition(currentLine) {
+  console.log(">>>>", currentLine[1])
+  dialers[7].setValue(currentLine[1]);
 }
