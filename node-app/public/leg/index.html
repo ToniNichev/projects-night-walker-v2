@@ -31,12 +31,11 @@
       container.addEventListener('mousedown', (e) => {
         activeEditingContainer = e.target;
         const id = activeEditingContainer.getAttribute('data-id');
-        if (start[id] == 1) {
-          return;
-        }
-        start[id] = 1;
 
         startX[id] = e.clientX - activeEditingContainer.offsetLeft;
+        if(start[id] == 1)
+          return;
+        start[id] = 1;
         startY[id] = e.clientY - activeEditingContainer.offsetTop;
       });
     });
@@ -45,13 +44,15 @@
       if (activeEditingContainer == null)
         return;
       const id = activeEditingContainer.getAttribute('data-id');      
-      const xDiff = (e.clientX - activeEditingContainer.offsetLeft);
-      const yDiff = (e.clientY - activeEditingContainer.offsetTop);
+      const xDiff = (e.clientX - activeEditingContainer.offsetLeft)// - startX[id];
+      const yDiff = (e.clientY - activeEditingContainer.offsetTop) - startY[id];
+
 
 
       angle[id] = Math.atan2(yDiff, xDiff) * 180 / Math.PI;
+      console.log(yDiff, xDiff, angle[id].toFixed(1));
       activeEditingContainer.style.transform = `rotate(${angle[id]}deg)`;
-      console.log("angle: ", angle[id].toFixed(2));
+      //console.log("angle: ", angle[id].toFixed(2));
 
     });
 

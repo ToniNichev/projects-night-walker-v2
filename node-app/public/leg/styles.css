@@ -2,9 +2,6 @@ body {
 
 }
 
-.container {
-}
-
 #mainScreen {
     height: 400px;
     background: green;
@@ -26,6 +23,7 @@ body {
 .legOne {
     top: 0px;
     left: 0px;
+    /* transform: rotate(60deg); */
 }
 
 .legTwo {
