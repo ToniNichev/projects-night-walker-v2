@@ -1,11 +1,28 @@
 body {
 
 }
+p {
+    text-align: center;
+}
+
+#drawCanvasWrapper {
+    width:800px;
+    height: 400px;
+    margin: auto; width: 800px;
+    color: blue;
+}
+
+#drawCanvas {
+    width:800px;
+    height: 400px;    
+    background: blue;
+}
+
 
 #mainScreen {
     height: 400px;
     background: green;
-    margin: auto; width: 800px
+    margin: auto; width: 800px;
 }
 
 
@@ -21,12 +38,12 @@ body {
 }
 
 .legOne {
-    top: 0px;
-    left: 0px;
+    top: 100px;
+    left: 100px;
     /* transform: rotate(60deg); */
 }
 
 .legTwo {
-    top: 200px;
-    left: 550px;
+    top: -1px;
+    left: 205px;
 }
