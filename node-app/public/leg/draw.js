@@ -7,15 +7,42 @@ function DrawCanvas() {
     }
 
 
-    function drawLeg(x, y) {
+    function drawLeg(x, y, angle, eX, eY) {
+        var ratio = 3.5;
+        var ratioAngle = 3.3;
+        var left = 50;
+        var top = 50;
         var ctx = returnContext();
         ctx.beginPath();
-        ctx.moveTo(50, 50);
-        ctx.lineTo(50 + x, 50 + y);
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "red";
+        x = x / ratio;
+        y = y / ratio;
+        eX = eX / ratioAngle - 45;
+        eY = eY / ratioAngle - 150;
+        ctx.fillText(parseFloat(angle).toFixed(2) + '°', left - 10, top - 10);
+
+        ctx.fillText(parseFloat(x).toFixed(2), left + 40, top - 10);
+
+        ctx.fillText(parseFloat(y).toFixed(2), left - 40, top + 30);
+
+        ctx.moveTo(left, top);
+        ctx.lineTo(left + x, top + y);
         ctx.strokeStyle = "red";
-        ctx.lineWidth = 10;
+        ctx.lineWidth = 5;
+        
         ctx.stroke();
         ctx.closePath();
+
+
+        ctx.beginPath();
+        ctx.fillStyle = "green";    
+
+        ctx.arc(eX, eY, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "green";
+        ctx.stroke();
+        ctx.closePath();
+
     }
 
     function clear() {

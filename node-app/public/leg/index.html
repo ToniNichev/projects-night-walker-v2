@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <div id="testDiv"></div>
   <h1>Test 123</h1>
   <div id="drawCanvasWrapper">
     <canvas id="drawCanvas"></canvas>
@@ -17,13 +18,27 @@
     <button onclick="DrawCanvasHelper(50,0)">draw flat</button>
     <button onclick="DrawCanvasHelper(0,0)">draw flat</button>
   </p>
-  <p>MODEL</p>
+  <p>RIGHT</p>
   <div id="mainScreen">
-    <div class="legContainer legOne" data-id='1'>
-      <div class="legContainer legTwo" data-id='2'></div>
+
+    <div class="leg" id="legOne">
+      <div class="servo servoOne" data-id='1'>
+        <div class="servo servoTwo" data-id='2'></div>
+      </div>
     </div>
-    <script src="./leg.js"></script>
-    <script src="./draw.js"></script>    
+
+    <div class="leg" id="legTwo">
+      <div class="servo servoOne" data-id='1'>
+        <div class="servo servoTwo" data-id='2'></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <button onclick="applyLegMovement()">apply</button>
+
+  <script src="./leg.js"></script>
+  <script src="./draw.js"></script>
   </div>
 </body>
 
