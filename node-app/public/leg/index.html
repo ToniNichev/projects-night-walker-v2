@@ -19,26 +19,51 @@
     <button onclick="DrawCanvasHelper(0,0)">draw flat</button>
   </p>
   <p>RIGHT</p>
-  <div id="mainScreen">
+  <div class="sceneScreen" id="sceneScreenRight">
 
-    <div class="leg" id="legOne">
+    <div class="leg legOne" id="legOne">
       <div class="servo servoOne" data-id='1'>
         <div class="servo servoTwo" data-id='2'></div>
       </div>
     </div>
 
-    <div class="leg" id="legTwo">
+    <div class="leg legTwo" id="legTwo">
       <div class="servo servoOne" data-id='1'>
         <div class="servo servoTwo" data-id='2'></div>
       </div>
     </div>
   </div>
 
-  
-  <button onclick="applyLegMovement()">apply</button>
+
+  <p>LEFT</p>
+  <div class="sceneScreen" id="sceneScreenLeft">
+
+    <div class="leg legThree" id="legThree">
+      <div class="servo servoOne" data-id='1'>
+        <div class="servo servoTwo" data-id='2'></div>
+      </div>
+    </div>
+
+    <div class="leg legFour" id="legFour">
+      <div class="servo servoOne" data-id='1'>
+        <div class="servo servoTwo" data-id='2'></div>
+      </div>
+    </div>
+  </div>
+
+
+  <button class="addLegMovement" onclick="addLegMovement()">Add move</button>
+
+  <div>
+    <textarea id="text-data">
+      
+    </textarea>
+    <p><button class="button-full-width" onClick="execute()"> ▶</button></p>
+  </div>
 
   <script src="./leg.js"></script>
   <script src="./draw.js"></script>
+  <script src='./draw-to-cervos.js'></script>
   </div>
 </body>
 

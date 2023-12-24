@@ -5,10 +5,15 @@ function legInit(legWrapper) {
   var activeEditingContainer = null;
   var startX, startY;
   var angle = 0;
+  var angleA, angleB;
   var lastAngle = 0;
 
   var leftPos;
   var topPos;
+
+  function getAngle(servo) {
+    return angle;
+  }
 
   container.addEventListener('mousedown', (e) => {
     if (activeEditingContainer != null)
@@ -17,7 +22,7 @@ function legInit(legWrapper) {
     activeEditingContainer = container;
     startX = e.clientX - activeEditingContainer.offsetLeft;
     startY = e.clientY - activeEditingContainer.offsetTop;
-    // console.log(e.clientY, activeEditingContainer.offsetTop, "=", startY);
+    angleA = angle;
 
     leftPos = activeEditingContainer.getBoundingClientRect().x;
     topPos = activeEditingContainer.getBoundingClientRect().y;
@@ -30,6 +35,7 @@ function legInit(legWrapper) {
     startX = e.clientX - activeEditingContainer.offsetLeft;
     startY = e.clientY - activeEditingContainer.offsetTop;
 
+    angleB = angle;
     leftPos = activeEditingContainer.getBoundingClientRect().x;
     topPos = activeEditingContainer.getBoundingClientRect().y;
 
@@ -46,10 +52,8 @@ function legInit(legWrapper) {
     if (activeEditingContainer == null)
       return;
 
-    // var left = activeEditingContainer.getBoundingClientRect().x;
-    // var top = activeEditingContainer.getBoundingClientRect().y;
     var diffX = (e.clientX - leftPos);
-    var diffY = (e.clientY - topPos) - 15 // - startY;
+    var diffY = (e.clientY - topPos) - 10 // - startY;
 
     angle = Math.atan2(diffY, diffX) * 180 / Math.PI;
     angle = angle - lastAngle;
@@ -58,13 +62,30 @@ function legInit(legWrapper) {
     var d = DrawCanvas();
     d.clear();
     d.drawLeg(diffX, diffY, angle);
+  });
+
+  return {
+    getAngle: () => getAngle(),
   }
-  );
 }
 
+// RIGHT View
+var sceneRight = document.getElementById("sceneScreenRight");
 
-var legWrapperOne = document.getElementById("legOne");
-legInit(legWrapperOne);
+var legWrapperOne = sceneRight.querySelector('.legOne')
+var legOne = legInit(legWrapperOne);
 
-var legWrapperTwo = document.getElementById("legTwo");
-legInit(legWrapperTwo);
+var legWrapperTwo = sceneRight.querySelector(".legTwo");
+var legYwo = legInit(legWrapperTwo);
+
+
+// LEFT View
+
+var sceneLeft = document.getElementById("sceneScreenLeft");
+
+var legWrapperThree = sceneLeft.querySelector('.legThree')
+legInit(legWrapperThree);
+
+
+var legWrapperFour = sceneLeft.querySelector(".legFour");
+legInit(legWrapperFour);

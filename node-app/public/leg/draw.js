@@ -29,7 +29,7 @@ function DrawCanvas() {
         ctx.moveTo(left, top);
         ctx.lineTo(left + x, top + y);
         ctx.strokeStyle = "red";
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 1;
         
         ctx.stroke();
         ctx.closePath();
