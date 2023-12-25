@@ -1,4 +1,6 @@
 
+
+
 function sendData(data) {
     data = data.split(' ').join('');
     var url = 'http://localhost:8080/send-data?data=' + data;
@@ -26,7 +28,7 @@ function loopThroughData() {
 
 
 
-function execute() {
+function executeCommands() {
     pos = 0;
     var data = document.getElementById('text-data').value;
     sequence = data.split("\n");
