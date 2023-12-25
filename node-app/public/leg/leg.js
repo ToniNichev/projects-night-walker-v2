@@ -5,14 +5,18 @@ function legInit(legWrapper) {
   var activeEditingContainer = null;
   var startX, startY;
   var angle = 0;
-  var angleA, angleB;
+  var angleA = 0, angleB = 0;
   var lastAngle = 0;
 
   var leftPos;
   var topPos;
 
-  function getAngle(servo) {
-    return angle;
+  function getAngleA(servo) {
+    return angleA;
+  }
+
+  function getAngleB(servo) {
+    return angleB;
   }
 
   container.addEventListener('mousedown', (e) => {
@@ -43,8 +47,13 @@ function legInit(legWrapper) {
 
 
   document.addEventListener('mouseup', (e) => {
-    if (activeEditingContainer?.getAttribute('data-id') == '1')
+    if (activeEditingContainer?.getAttribute('data-id') == '1') {
+      angleA = angle;
       lastAngle = angle;
+    }
+    else {
+      angleB = angle;
+    }
     activeEditingContainer = null;
   });
 
@@ -65,7 +74,8 @@ function legInit(legWrapper) {
   });
 
   return {
-    getAngle: () => getAngle(),
+    getAngleA: () => getAngleA(),
+    getAngleB: () => getAngleB(),
   }
 }
 
