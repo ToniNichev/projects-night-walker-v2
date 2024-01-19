@@ -1,3 +1,6 @@
+// servoID, angle, speed
+
+
 function legInit(legWrapper) {
   var container = legWrapper.querySelector('.servoOne');
   var containerTwo = legWrapper.querySelector('.servoTwo');
