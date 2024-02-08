@@ -21,15 +21,15 @@
   <p>RIGHT</p>
   <div class="sceneScreen" id="sceneScreenRight">
 
-    <div class="leg legOne" id="legOne">
-      <div class="servo servoOne" data-id='1'>
-        <div class="servo servoTwo" data-id='2'></div>
+    <div class="leg legOne">
+      <div class="servo servoOne" data-id='1' data-leg='legOne' data-servo='servoOne'>
+        <div class="servo servoTwo" data-id='2' data-leg='legOne' data-servo='servoTwo'></div>
       </div>
     </div>
 
-    <div class="leg legTwo" id="legTwo">
-      <div class="servo servoOne" data-id='1'>
-        <div class="servo servoTwo" data-id='2'></div>
+    <div class="leg legTwo">
+      <div class="servo servoOne" data-id='1' data-leg='legTwo' data-servo='servoOne'>
+        <div class="servo servoTwo" data-id='2' data-leg='legTwo' data-servo='servoTwo'></div>
       </div>
     </div>
   </div>
@@ -38,17 +38,20 @@
   <p>LEFT</p>
   <div class="sceneScreen" id="sceneScreenLeft">
 
-    <div class="leg legThree" id="legThree">
-      <div class="servo servoOne" data-id='1'>
-        <div class="servo servoTwo" data-id='2'></div>
+
+    <div class="leg legOne">
+      <div class="servo servoOne" data-id='1' data-leg='legOne' data-servo='servoOne'>
+        <div class="servo servoTwo" data-id='2' data-leg='legOne' data-servo='servoTwo'></div>
       </div>
     </div>
 
-    <div class="leg legFour" id="legFour">
-      <div class="servo servoOne" data-id='1'>
-        <div class="servo servoTwo" data-id='2'></div>
+    <div class="leg legTwo">
+      <div class="servo servoOne" data-id='1' data-leg='legTwo' data-servo='servoOne'>
+        <div class="servo servoTwo" data-id='2' data-leg='legTwo' data-servo='servoTwo'></div>
       </div>
     </div>
+
+
   </div>
 
 
@@ -59,11 +62,11 @@
     <p><button class="button-full-width" onClick="executeCommands()"> ▶</button></p>
   </div>
 
-  <script src="./leg.js"></script>
+  <!-- <script src="./leg.js"></script> -->
   <script src="./draw.js"></script>
   <script src="../scripts.js"></script>
   
-  <script src='./draw-to-cervos.js'></script>
+  <!-- <script src='./draw-to-cervos.js'></script> -->
   </div>
 </body>
 

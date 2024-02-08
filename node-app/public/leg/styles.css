@@ -45,13 +45,13 @@ p {
     position: relative;
 }
 
-#legOne {
+#sceneScreenRight > .legOne, #sceneScreenLeft > .legOne {
     top: 70px;
     left: 220px;
     position: relative;    
 }
 
-#legTwo {
+#sceneScreenRight > .legTwo, #sceneScreenLeft > .legTwo {
     top: 48px;
     left: 350px;
     position: relative;    

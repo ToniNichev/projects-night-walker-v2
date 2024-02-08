@@ -93,7 +93,7 @@ var legYwo = legInit(legWrapperTwo);
 
 
 // LEFT View
-
+/*
 var sceneLeft = document.getElementById("sceneScreenLeft");
 
 var legWrapperThree = sceneLeft.querySelector('.legThree')
@@ -102,3 +102,4 @@ legInit(legWrapperThree);
 
 var legWrapperFour = sceneLeft.querySelector(".legFour");
 legInit(legWrapperFour);
+*/
