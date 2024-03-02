@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The night walker v2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="sceneScreen" id="sceneScreenLeft">
+    <div class="leg legOne">
+      <div class="servo servoOne" data-id='1' data-leg='legOne' data-servo='servoOne'>
+        <div class="servo servoTwo" data-id='2' data-leg='legOne' data-servo='servoTwo'></div>
+      </div>
+    </div>
+  </div>
+
+
+  <button class="addLegMovement" onclick="addLegMovement()">Add move</button>
+
+  <div>
+    <textarea id="text-data"></textarea>
+    <p><button class="button-full-width" onClick="executeCommands()"> ▶</button></p>
+  </div>
+  <script src="./leg.js"></script>
+
+  </div>
+</body>
+
+</html>
