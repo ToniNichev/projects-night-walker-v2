@@ -13,7 +13,7 @@ var legs = {
   },
   legTwo: {
       servoOne: {
-          leftPos: 0,
+          leftPos: 400,
           topPos: 0,
           angle: 0,
       },
@@ -25,7 +25,25 @@ var legs = {
   }
 }
 
+function legInit(leg, servoOne, servoTwo) {
+  var legName = servoOne.getAttribute('data-leg');
 
+  var left = legs[legName]['servoOne'].leftPos;
+  var top = legs[legName]['servoOne'].topPos;
+  leg.style.left = `${left}px`;
+  leg.style.top = `${top}px`;
+
+
+  servoOne.addEventListener('mousedown', (e) => {
+    mouseDown(e, servoOne);
+  });
+  
+  
+  servoTwo.addEventListener('mousedown', (e) => {
+    mouseDown(e, servoTwo);
+  });
+  
+}
 
 var activeEditingContainer = null;
 var startLeft = 0;
@@ -51,44 +69,40 @@ document.addEventListener('mousemove', (e) => {
   activeEditingContainer.style.transform = `rotate(${angleAll}deg)`;
 });
 
-
-var sceneLeft = document.getElementById("sceneScreenLeft");
-var legOne = sceneLeft.querySelector('.legOne')
-
-var servoOne = legOne.querySelector('.servoOne')
-var servoTwo = legOne.querySelector('.servoTwo')
-
 function mouseDown(e, servo) {
   if (activeEditingContainer != null)
     return;
   activeEditingContainer = servo;
+  var legName = servo.getAttribute('data-leg');
+  var left = legs[legName].servoOne.leftPos;
+  var top = legs[legName].servoOne.topPos;
 
   if (activeEditingContainer.getAttribute('data-servo') == 'servoTwo') {
-    startLeft = 100 * Math.cos(servoOneAngle * (Math.PI / 180));
-    startTop = 100 * Math.sin(servoOneAngle * (Math.PI / 180));
+    startLeft = 100 * Math.cos(servoOneAngle * (Math.PI / 180)) + left;
+    startTop = 100 * Math.sin(servoOneAngle * (Math.PI / 180)) + top;
   } else {
-    startLeft = 0;
-    startTop = 0;
+    startLeft = left;
+    startTop = top;
   }
-  console.log("start:", startLeft, startTop);
 }
-
-function mouseUp(e) {
-  activeEditingContainer = null;
-}
-
-servoOne.addEventListener('mousedown', (e) => {
-  mouseDown(e, servoOne);
-});
-
-
-servoTwo.addEventListener('mousedown', (e) => {
-  mouseDown(e, servoTwo);
-});
 
 
 document.addEventListener('mouseup', (e) => {
-  mouseUp(e);
+  activeEditingContainer = null;
 });
 
 // set up leg
+
+var sceneLeft = document.getElementById("sceneScreenLeft");
+var legOne = sceneLeft.querySelector('.legOne')
+var legTwo = sceneLeft.querySelector('.legTwo')
+
+var legOneServoOne = legOne.querySelector('.servoOne');
+var legOneServoTwo = legOne.querySelector('.servoTwo');
+
+legInit(legOne, legOneServoOne, legOneServoTwo);
+
+var legTwoServoOne = legTwo.querySelector('.servoOne');
+var legTwoServoTwo = legTwo.querySelector('.servoTwo');
+
+legInit(legTwo, legTwoServoOne, legTwoServoTwo);

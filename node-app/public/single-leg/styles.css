@@ -59,8 +59,8 @@ p {
 }
 
 #sceneScreenRight > .legTwo, #sceneScreenLeft > .legTwo {
-    top: 48px;
-    left: 350px;
+    top: 0px;
+    left: 0px;
     position: relative;    
 }
 
