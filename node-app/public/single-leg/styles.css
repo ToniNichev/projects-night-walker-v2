@@ -55,13 +55,13 @@ p {
 #sceneScreenRight > .legOne, #sceneScreenLeft > .legOne {
     top: 0px;
     left: 0px;
-    position: relative;    
+    position: absolute;    
 }
 
 #sceneScreenRight > .legTwo, #sceneScreenLeft > .legTwo {
     top: 0px;
     left: 0px;
-    position: relative;    
+    position: absolute;    
 }
 
 .servoTwo {

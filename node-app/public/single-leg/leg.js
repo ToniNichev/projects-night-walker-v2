@@ -13,8 +13,8 @@ var legs = {
   },
   legTwo: {
       servoOne: {
-          leftPos: 400,
-          topPos: 0,
+          leftPos: 300,
+          topPos: 100,
           angle: 0,
       },
       servoTwo: {
