@@ -48,15 +48,18 @@ function legInit(leg, servoOne, servoTwo) {
 var activeEditingContainer = null;
 var startLeft = 0;
 var startTop = 0;
-var servoOneAngle = 0;
+// var servoOneAngle = 0;
 var angleAll = 0, angle = 0;
 
 document.addEventListener('mousemove', (e) => {
   if (activeEditingContainer == null)
     return;
 
+  var legName = activeEditingContainer.getAttribute('data-leg');
+
   var diffX = (e.clientX - startLeft);
   var diffY = (e.clientY - startTop) - 10;
+  var servoOneAngle = legs[legName].servoOne.angle;
 
   angle = Math.atan2(diffY, diffX) * 180 / Math.PI;
   if (activeEditingContainer.getAttribute('data-servo') == 'servoTwo') {
@@ -64,7 +67,9 @@ document.addEventListener('mousemove', (e) => {
   }
   else {
     angleAll = angle;
-    servoOneAngle = angle;
+
+    legs[legName].servoOne.angle = angle;
+    //servoOneAngle = angle;
   }
   activeEditingContainer.style.transform = `rotate(${angleAll}deg)`;
 });
@@ -76,6 +81,7 @@ function mouseDown(e, servo) {
   var legName = servo.getAttribute('data-leg');
   var left = legs[legName].servoOne.leftPos;
   var top = legs[legName].servoOne.topPos;
+  var servoOneAngle = legs[legName].servoOne.angle;
 
   if (activeEditingContainer.getAttribute('data-servo') == 'servoTwo') {
     startLeft = 100 * Math.cos(servoOneAngle * (Math.PI / 180)) + left;
