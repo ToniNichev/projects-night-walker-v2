@@ -96,6 +96,7 @@ document.addEventListener('mousemove', (e) => {
   angle = Math.atan2(diffY, diffX) * 180 / Math.PI;
   if (activeEditingContainer.getAttribute('data-servo') == 'servoTwo') {
     angleAll = angle - servoOneAngle;
+    legs[activeSceneName][legName].servoTwo.angle = angleAll;
   }
   else {
     angleAll = angle;
