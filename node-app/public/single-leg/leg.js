@@ -5,11 +5,13 @@ var legs = {
         servoOne: {
           leftPos: 100,
           topPos: 100,
+          active: true,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
+          active: true,
           angle: 0,
         }
       },
@@ -17,11 +19,13 @@ var legs = {
         servoOne: {
           leftPos: 300,
           topPos: 100,
+          active: true,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
+          active: true,
           angle: 0,
         }
       }
@@ -33,11 +37,13 @@ var legs = {
         servoOne: {
           leftPos: 100,
           topPos: 400,
+          active: true,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
+          active: true,
           angle: 0,
         }
       },
@@ -45,11 +51,13 @@ var legs = {
         servoOne: {
           leftPos: 300,
           topPos: 400,
+          active: true,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
+          active: true,
           angle: 0,
         }
       }
@@ -65,6 +73,13 @@ function legInit(sceneName, leg, servoOne, servoTwo) {
   leg.style.left = `${left}px`;
   leg.style.top = `${top}px`;
 
+  servoOne.addEventListener('dblclick', (e) => {
+    mouseDoubleClick(e, sceneName, servoOne);
+  });
+
+  servoTwo.addEventListener('dblclick', (e) => {
+    mouseDoubleClick(e, sceneName, servoTwo);
+  });
 
   servoOne.addEventListener('mousedown', (e) => {
     mouseDown(e, sceneName, servoOne);
@@ -105,6 +120,21 @@ document.addEventListener('mousemove', (e) => {
   }
   activeEditingContainer.style.transform = `rotate(${angleAll}deg)`;
 });
+
+
+function mouseDoubleClick(e, sceneName, servo) {
+  if( servo.classList.contains("notActive") ) {
+    servo.classList.remove("notActive")    
+  } else {
+    servo.classList.add("notActive")
+  }
+
+  var legName = servo.getAttribute('data-leg');
+  var servoName = servo.getAttribute('data-servo');
+  legs[sceneName][legName][servoName]. active = legs[sceneName][legName][servoName]. active ? false : true;
+
+
+}
 
 function mouseDown(e, sceneName, servo) {
   if (activeEditingContainer != null)
