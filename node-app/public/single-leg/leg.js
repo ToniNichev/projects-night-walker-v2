@@ -1,3 +1,6 @@
+var commandDown = false;
+var activeLeg = null;
+
 var legs = {
   sceneLeft:
     {
@@ -6,12 +9,14 @@ var legs = {
           leftPos: 100,
           topPos: 100,
           active: true,
+          speed: 1,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
           active: true,
+          speed: 1,          
           angle: 0,
         }
       },
@@ -20,12 +25,14 @@ var legs = {
           leftPos: 300,
           topPos: 100,
           active: true,
+          speed: 1,          
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
           active: true,
+          speed: 1,
           angle: 0,
         }
       }
@@ -38,12 +45,14 @@ var legs = {
           leftPos: 100,
           topPos: 400,
           active: true,
+          speed: 1,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
           active: true,
+          speed: 1,
           angle: 0,
         }
       },
@@ -52,12 +61,14 @@ var legs = {
           leftPos: 300,
           topPos: 400,
           active: true,
+          speed: 1,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
           active: true,
+          speed: 1,
           angle: 0,
         }
       }
@@ -99,7 +110,13 @@ var startTop = 0;
 var angleAll = 0, angle = 0;
 
 document.addEventListener('mousemove', (e) => {
-  if (activeEditingContainer == null)
+  if( commandDown == true) {
+    document.getElementById('speedBar').style.width = e.clientX + 'px';
+    console.log(e.clientX);
+    return;
+  }
+
+  if (activeEditingContainer == null )
     return;
 
   var legName = activeEditingContainer.getAttribute('data-leg');
@@ -142,9 +159,11 @@ function mouseDown(e, sceneName, servo) {
   activeSceneName = sceneName;
   activeEditingContainer = servo;
   var legName = servo.getAttribute('data-leg');
+  var servoName = servo.getAttribute('data-servo');
   var left = legs[sceneName][legName].servoOne.leftPos;
   var top = legs[sceneName][legName].servoOne.topPos;
   var servoOneAngle = legs[sceneName][legName].servoOne.angle;
+  activeLeg = legs[sceneName][legName][servoName];
 
   if (activeEditingContainer.getAttribute('data-servo') == 'servoTwo') {
     startLeft = 100 * Math.cos(servoOneAngle * (Math.PI / 180)) + left;

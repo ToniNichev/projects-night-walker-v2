@@ -18,3 +18,18 @@ function addLegMovement() {
         }
     }
 }
+
+
+document.addEventListener('keydown', function(event) {
+    if (event.metaKey || event.ctrlKey) {
+        console.log('Command/Control key is down');
+        commandDown = true;
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+    if (!event.metaKey && !event.ctrlKey) {
+        console.log('Command/Control key is up');
+        commandDown = false;
+    }
+});
