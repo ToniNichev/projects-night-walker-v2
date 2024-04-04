@@ -8,14 +8,14 @@ var legs = {
         servoOne: {
           leftPos: 100,
           topPos: 100,
-          active: true,
+          active: false,
           speed: 1,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
-          active: true,
+          active: false,
           speed: 1,          
           angle: 0,
         }
@@ -24,14 +24,14 @@ var legs = {
         servoOne: {
           leftPos: 300,
           topPos: 100,
-          active: true,
+          active: false,
           speed: 1,          
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
-          active: true,
+          active: false,
           speed: 1,
           angle: 0,
         }
@@ -44,14 +44,14 @@ var legs = {
         servoOne: {
           leftPos: 100,
           topPos: 400,
-          active: true,
+          active: false,
           speed: 1,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
-          active: true,
+          active: false,
           speed: 1,
           angle: 0,
         }
@@ -60,14 +60,14 @@ var legs = {
         servoOne: {
           leftPos: 300,
           topPos: 400,
-          active: true,
+          active: false,
           speed: 1,
           angle: 0,
         },
         servoTwo: {
           leftPos: 0,
           topPos: 0,
-          active: true,
+          active: false,
           speed: 1,
           angle: 0,
         }

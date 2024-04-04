@@ -7,7 +7,7 @@ function addLegMovement() {
 
     var dataField = document.getElementById('text-data');
 
-    for (s = 0; s < 1; s++) {
+    for (s = 0; s < 2; s++) {
         var _scene = _scenes[s];
         for (var i = 0; i < 4; i++) {
 
@@ -16,6 +16,7 @@ function addLegMovement() {
             var _servo = _servos[i % 2];
 
             var angle = legs[_scene][_leg][_servo].angle;
+            var speed = 1;
 
             switch (i) {
                 case 0:
