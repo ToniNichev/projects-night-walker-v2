@@ -4,6 +4,10 @@ function addLegMovement() {
     var _scenes = ['sceneLeft', 'sceneRight'];
     var _legs = ['legOne', 'legTwo'];
     var _servos = ['servoOne', 'servoTwo',];
+    //slots:        0, 1, 2 ,3, 4, 5, 6, 7 
+    var servoIds = [5, 4, 1, 0, 7, 6, 3, 2];
+    var servoCount = 0;
+    var servoNewData = [];
 
     var dataField = document.getElementById('text-data');
 
@@ -18,22 +22,28 @@ function addLegMovement() {
             var angle = legs[_scene][_leg][_servo].angle;
             var speed = 1;
 
+            var calculatedAngle;
             switch (i) {
                 case 0:
-                    console.log(180 - angle * 2);
+                    calculatedAngle =180 - angle * 2;
                     break;
                 case 1:
-                    console.log(180 + angle * 2);
+                    calculatedAngle = 180 + angle * 2;
                     break;
                 case 2:
-                    console.log(180 - angle * 2);
+                    calculatedAngle = 180 - angle * 2;
                     break;
                 case 3:
-                    console.log(180 + angle * 2);
+                    calculatedAngle = 180 + angle * 2;
                     break;
             }
+            calculatedAngle = Math.round(calculatedAngle * 100) / 100;
+            console.log(servoCount + " : " + servoIds[servoCount] + " : " + calculatedAngle);
+            servoNewData.push(`${servoIds[servoCount]},${calculatedAngle},1  `)
+            servoCount ++;
         }
     }
+    console.log(servoNewData.join(','));
 }
 
 
