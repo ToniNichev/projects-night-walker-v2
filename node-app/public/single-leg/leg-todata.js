@@ -1,3 +1,5 @@
+var executionList = [];
+
 function addLegMovement() {
     var angleA = legs.sceneLeft.legOne.servoOne.angle
 
@@ -25,7 +27,7 @@ function addLegMovement() {
             var calculatedAngle;
             switch (i) {
                 case 0:
-                    calculatedAngle =180 - angle * 2;
+                    calculatedAngle = 180 - angle * 2;
                     break;
                 case 1:
                     calculatedAngle = 180 + angle * 2;
@@ -40,10 +42,13 @@ function addLegMovement() {
             calculatedAngle = Math.round(calculatedAngle * 100) / 100;
             console.log(servoCount + " : " + servoIds[servoCount] + " : " + calculatedAngle);
             servoNewData.push(`${servoIds[servoCount]},${calculatedAngle},1  `)
-            servoCount ++;
+            servoCount++;
         }
     }
     console.log(servoNewData.join(','));
+    executionList.push(servoNewData.join(','));
+    rebuildExecutionListUI();
+
 }
 
 
@@ -60,3 +65,23 @@ document.addEventListener('keyup', function (event) {
         commandDown = false;
     }
 });
+
+/* ########################################
+
+    EXWCUTION LIST 
+
+   ######################################## */
+
+function rebuildExecutionListUI() {
+    executionList.map((element, index) => {
+        var parentDiv = document.querySelector('#execution-list');
+
+        if (!parentDiv.querySelector(`[data-id="${index}"]`)) {
+            var newDiv = document.createElement('div');
+            newDiv.setAttribute('data-id', index);
+            newDiv.textContent =  `${index} -  ${element}`;
+            // Append the new div to the parent div
+            parentDiv.appendChild(newDiv);
+        }
+    });
+}
