@@ -3,76 +3,80 @@ var activeLeg = null;
 
 var legs = {
   sceneLeft:
-    {
-      legOne: {
-        servoOne: {
-          leftPos: 100,
-          topPos: 100,
-          active: false,
-          speed: 1,
-          angle: 0,
-        },
-        servoTwo: {
-          leftPos: 0,
-          topPos: 0,
-          active: false,
-          speed: 1,          
-          angle: 0,
-        }
+  {
+    legOne: {
+      servoOne: {
+        leftPos: 100,
+        topPos: 100,
+        active: false,
+        servoAngle: 0,
+        speed: 1,
+        angle: 0,
       },
-      legTwo: {
-        servoOne: {
-          leftPos: 300,
-          topPos: 100,
-          active: false,
-          speed: 1,          
-          angle: 0,
-        },
-        servoTwo: {
-          leftPos: 0,
-          topPos: 0,
-          active: false,
-          speed: 1,
-          angle: 0,
-        }
+      servoTwo: {
+        leftPos: 0,
+        topPos: 0,
+        active: false,
+        servoAngle: 0,
+        speed: 1,
+        angle: 0,
       }
     },
-
-    sceneRight:
-    {
-      legOne: {
-        servoOne: {
-          leftPos: 100,
-          topPos: 400,
-          active: false,
-          speed: 1,
-          angle: 0,
-        },
-        servoTwo: {
-          leftPos: 0,
-          topPos: 0,
-          active: false,
-          speed: 1,
-          angle: 0,
-        }
+    legTwo: {
+      servoOne: {
+        leftPos: 300,
+        topPos: 100,
+        active: false,
+        servoAngle: 0,
+        speed: 1,
+        angle: 0,
       },
-      legTwo: {
-        servoOne: {
-          leftPos: 300,
-          topPos: 400,
-          active: false,
-          speed: 1,
-          angle: 0,
-        },
-        servoTwo: {
-          leftPos: 0,
-          topPos: 0,
-          active: false,
-          speed: 1,
-          angle: 0,
-        }
+      servoTwo: {
+        leftPos: 0,
+        topPos: 0,
+        active: false,
+        servoAngle: 0,
+        speed: 1,
+        angle: 0,
       }
-    },    
+    }
+  },
+
+  sceneRight:
+  {
+    legOne: {
+      servoOne: {
+        leftPos: 100,
+        topPos: 400,
+        active: false,
+        speed: 1,
+        angle: 0,
+      },
+      servoTwo: {
+        leftPos: 0,
+        topPos: 0,
+        active: false,
+        speed: 1,
+        angle: 0,
+      }
+    },
+    legTwo: {
+      servoOne: {
+        leftPos: 300,
+        topPos: 400,
+        active: false,
+        speed: 1,
+        angle: 0,
+      },
+      servoTwo: {
+        leftPos: 0,
+        topPos: 0,
+        active: false,
+        speed: 1,
+        angle: 0,
+      }
+    }
+  },
 }
 
 function legInit(sceneName, leg, servoOne, servoTwo) {
@@ -110,13 +114,13 @@ var startTop = 0;
 var angleAll = 0, angle = 0;
 
 document.addEventListener('mousemove', (e) => {
-  if( commandDown == true) {
+  if (commandDown == true) {
     document.getElementById('speedBar').style.width = e.clientX + 'px';
     console.log(e.clientX);
     return;
   }
 
-  if (activeEditingContainer == null )
+  if (activeEditingContainer == null)
     return;
 
   var legName = activeEditingContainer.getAttribute('data-leg');
@@ -140,15 +144,15 @@ document.addEventListener('mousemove', (e) => {
 
 
 function mouseDoubleClick(e, sceneName, servo) {
-  if( servo.classList.contains("notActive") ) {
-    servo.classList.remove("notActive")    
+  if (servo.classList.contains("notActive")) {
+    servo.classList.remove("notActive")
   } else {
     servo.classList.add("notActive")
   }
 
   var legName = servo.getAttribute('data-leg');
   var servoName = servo.getAttribute('data-servo');
-  legs[sceneName][legName][servoName]. active = legs[sceneName][legName][servoName]. active ? false : true;
+  legs[sceneName][legName][servoName].active = legs[sceneName][legName][servoName].active ? false : true;
 
 
 }
@@ -211,3 +215,31 @@ var legTwoServoOne = legTwo.querySelector('.servoOne');
 var legTwoServoTwo = legTwo.querySelector('.servoTwo');
 
 legInit("sceneRight", legTwo, legTwoServoOne, legTwoServoTwo);
+
+
+// Manipulating legs in the scene
+
+function legToAngle(selector, angleDegree) {
+  
+  legSelector = selector.split('sceneScreenLeft').join('sceneLeft');
+  legSelector = legSelector.split('sceneScreenRight').join('sceneRight');
+  legSelector = legSelector.split('#').join('');
+  legSelector = legSelector.split('>').join('');
+  legSelector = legSelector.split('.');
+  
+  selectedLeg = legs[legSelector[0].trim()][legSelector[1].trim()][legSelector[2].trim()];
+  
+  // example selector: '#sceneScreenLeft > .legTwo > .servoOne'
+  let angle;
+  let servoAngle;
+  if (selector.includes('servoTwo')) {
+    angle = (- 180 - angleDegree) / 2;
+    
+  }
+  else {
+    angle = (180 - angleDegree) / 2;
+    servoAngle = 180 - angleDegree;
+  }
+  selectedLeg.angle = angle;
+  document.querySelector(selector).style.transform = `rotate(${angle}deg)`;
+}

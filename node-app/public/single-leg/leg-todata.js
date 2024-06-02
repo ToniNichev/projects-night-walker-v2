@@ -1,7 +1,7 @@
 var executionList = [];
 
 function addLegMovement() {
-    var angleA = legs.sceneLeft.legOne.servoOne.angle
+    //var angleA = legs.sceneLeft.legOne.servoOne.angle
 
     var _scenes = ['sceneLeft', 'sceneRight'];
     var _legs = ['legOne', 'legTwo'];
@@ -40,15 +40,40 @@ function addLegMovement() {
                     break;
             }
             calculatedAngle = Math.round(calculatedAngle * 100) / 100;
-            console.log(servoCount + " : " + servoIds[servoCount] + " : " + calculatedAngle);
+            // console.log(servoCount + " : " + servoIds[servoCount] + " : " + calculatedAngle);
+            legs[_scene][_leg][_servo].servoAngle = calculatedAngle;
             servoNewData.push(`${servoIds[servoCount]},${calculatedAngle},1  `)
             servoCount++;
         }
     }
-    console.log(servoNewData.join(','));
+    //console.log(servoNewData.join(','));
+    consoleLogForArduinoSkitch();
     executionList.push(servoNewData.join(','));
     rebuildExecutionListUI();
 
+}
+
+function consoleLogForArduinoSkitch() {
+    
+    console.log(`
+    {
+        {
+            // front right leg
+            ${legs.sceneLeft.legTwo.servoTwo.servoAngle},
+            ${legs.sceneLeft.legTwo.servoOne.servoAngle},
+            // front left leg
+            ${legs.sceneRight.legTwo.servoTwo.servoAngle},
+            ${legs.sceneRight.legTwo.servoOne.servoAngle},
+            // rear right leg   
+            ${legs.sceneLeft.legOne.servoTwo.servoAngle},
+            ${legs.sceneLeft.legOne.servoOne.servoAngle},             
+            // rear left leg   
+            ${legs.sceneRight.legOne.servoTwo.servoAngle},
+            ${legs.sceneRight.legOne.servoOne.servoAngle},                     
+        },
+        1
+    },
+    `);
 }
 
 
