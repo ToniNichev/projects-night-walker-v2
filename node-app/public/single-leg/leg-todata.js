@@ -130,27 +130,41 @@ function rebuildExecutionListUI() {
 
         //if (!parentDiv.querySelector(`[data-id="${index}"]`)) {
             var newDiv = document.createElement('div');
-            newDiv.setAttribute('data-id', index);
-            newDiv.textContent =  `${index} -  ${element}`;
-            // Set Button
+            newDiv.setAttribute('data-id', index);            
+            // Set textarea
+            var newInputText = document.createElement('input');
+            newInputText.setAttribute('type', 'text');
+            newInputText.value =  `${index} -  ${element}`;
+            newDiv.appendChild(newInputText);
+            // Button - legs to data
             var setServoButton = document.createElement('button');
-            setServoButton.innerHTML = '<span class="material-icons">settings</span>';
+            setServoButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
             setServoButton.addEventListener('click', (e) => {
                 var servoData = element.split(',');
                 dataToLegs(servoData)
             });
             newDiv.appendChild(setServoButton);
 
-            // Set This row with leg settings
+            // Button - Data to legs
             var setServoButton = document.createElement('button');
-            setServoButton.innerHTML = '<span class="material-icons">arrow_drop_down</span>';
+            setServoButton.innerHTML = '<i class="fas fa-arrow-down"></i>';
             setServoButton.addEventListener('click', (e) => {
                 const index = e.target.parentElement.parentElement.getAttribute('data-id');
                 const servoNewData = calculateLegMovement();
                 executionList[index] = `${servoNewData.join(',  ')}`;
                 rebuildExecutionListUI();
             });
-            newDiv.appendChild(setServoButton);            
+            newDiv.appendChild(setServoButton);    
+
+            // Button - Delete row
+            var setServoButton = document.createElement('button');
+            setServoButton.innerHTML = '<i class="fas fa-trash"></i>';
+            setServoButton.addEventListener('click', (e) => {
+                const index = e.target.parentElement.parentElement.getAttribute('data-id');
+                executionList.splice(index, 1);
+                rebuildExecutionListUI();
+            });
+            newDiv.appendChild(setServoButton);                    
             // Append the new div to the parent div
             parentDiv.appendChild(newDiv);
         //}
@@ -158,9 +172,7 @@ function rebuildExecutionListUI() {
 }
 
 function executeCommands() {
-    //pos = 0;
-    //var data = document.getElementById('text-data').value;
-    //sequence = data.split("\n");
+    pos = 0;
     loopThroughData();   
 }
 

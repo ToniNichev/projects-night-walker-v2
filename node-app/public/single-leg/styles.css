@@ -101,3 +101,28 @@ textarea {
     background-color: blue;
     color: white;
 }
+
+#execution-list > div > input[type=text] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+#execute-commands {
+    width: 100%;
+    padding: 20px;
+    background-color: blue;
+    color: white;
+    border: 1px solid silver;
+}
+
+#execution-list button {
+    padding: 10px;
+    margin: 10px 0;
+}   
+
+#execution-list button:hover {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: blue;
+}   

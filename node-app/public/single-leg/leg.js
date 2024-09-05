@@ -115,31 +115,33 @@ var startTop = 0;
 var angleAll = 0, angle = 0;
 
 document.addEventListener('mousemove', (e) => {
-  if (commandDown == true) {
+  if (commandDown === true) {
     document.getElementById('speedBar').style.width = e.clientX + 'px';
     activeSpeed = parseInt(e.clientX / 90);
-    activeSpeed = activeSpeed == 0 ? 1 : activeSpeed;
+    activeSpeed = activeSpeed === 0 ? 1 : activeSpeed;
     console.log(activeSpeed);
     return;
   }
 
-  if (activeEditingContainer == null)
-    return;
+  if (activeEditingContainer == null) return;
 
   var legName = activeEditingContainer.getAttribute('data-leg');
 
-  var diffX = (e.clientX - startLeft);
-  var diffY = (e.clientY - startTop) - 10;
+  // Adjust for scroll position
+  const scrollX = window.scrollX || window.pageXOffset;
+  const scrollY = window.scrollY || window.pageYOffset;
+
+  // Calculate the difference in position considering scroll offset
+  var diffX = (e.clientX + scrollX - startLeft);
+  var diffY = (e.clientY + scrollY - startTop) - 10; // Adjust for some constant offset if necessary
   var servoOneAngle = legs[activeSceneName][legName].servoOne.angle;
 
   angle = Math.atan2(diffY, diffX) * 180 / Math.PI;
   if (activeEditingContainer.getAttribute('data-servo') == 'servoTwo') {
     angleAll = angle - servoOneAngle;
     legs[activeSceneName][legName].servoTwo.angle = angleAll;
-  }
-  else {
+  } else {
     angleAll = angle;
-
     legs[activeSceneName][legName].servoOne.angle = angle;
   }
   activeEditingContainer.style.transform = `rotate(${angleAll}deg)`;

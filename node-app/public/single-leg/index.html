@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="speed-bar-styles.css">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -53,15 +54,11 @@
   </div>
   <button class="addLegMovement" onclick="addLegMovement()">Add move</button>
 
-  <div class="flex space-x-4 p-4">
-    <textarea id="text-data" class="flex-1 p-2 border rounded" rows="10" placeholder="Text Area 1"></textarea>
-    <textarea class="flex-1 p-2 border rounded" rows="10" placeholder="Text Area 2"></textarea>
-  </div>
 </body>
   </div>
   <div id="execution-list">
   </div>
-  <p><button class="button-full-width" onClick="executeCommands()"> ▶</button></p>  
+  <p><button class="button-full-width" id="execute-commands" onClick="executeCommands()">▶</button></p>  
   <script src="./leg.js"></script>
   <script src="./leg-todata.js"></script>
   <script src="./commands.js"></script>
