@@ -1,6 +1,6 @@
 var executionList = [];
 
-function addLegMovement() {
+function calculateLegMovement() {
     //var angleA = legs.sceneLeft.legOne.servoOne.angle
 
     var _scenes = ['sceneLeft', 'sceneRight'];
@@ -42,15 +42,19 @@ function addLegMovement() {
             calculatedAngle = Math.round(calculatedAngle * 100) / 100;
             // console.log(servoCount + " : " + servoIds[servoCount] + " : " + calculatedAngle);
             legs[_scene][_leg][_servo].servoAngle = calculatedAngle;
-            servoNewData.push(`${servoIds[servoCount]},${calculatedAngle},1  `)
+            legs[_scene][_leg][_servo].speed = activeSpeed;
+            servoNewData.push(`${servoIds[servoCount]},${calculatedAngle},${activeSpeed}`)
             servoCount++;
         }
     }
-    //console.log(servoNewData.join(','));
-    consoleLogForArduinoSkitch();
-    executionList.push(servoNewData.join(','));
-    rebuildExecutionListUI();
+    return servoNewData;
+}
 
+function addLegMovement() {
+    const servoNewData = calculateLegMovement();
+    consoleLogForArduinoSkitch();
+    executionList.push(servoNewData.join(',  '));
+    rebuildExecutionListUI();
 }
 
 function consoleLogForArduinoSkitch() {
@@ -91,22 +95,95 @@ document.addEventListener('keyup', function (event) {
     }
 });
 
+
+function dataToLegs(data) {
+    var _scenes = ['sceneScreenLeft', 'sceneScreenRight'];
+    var _legs = ['legOne', 'legTwo'];
+    var _servos = ['servoOne', 'servoTwo',];
+    //slots:        0, 1, 2 ,3, 4, 5, 6, 7 
+    var servoIds = [5, 4, 1, 0, 7, 6, 3, 2];
+    var servoCount = 0;
+    var servoNewData = [];
+
+    for (s = 0; s < 2; s++) {
+        var _scene = _scenes[s];
+        for (var i = 0; i < 4; i++) {            
+            const greater = _servos[i % 2] === 'servoOne' ? '>' : '';
+            const servoSelector = `#${_scene} > .${_legs[Math.round(i / 4)]} ${greater} .${_servos[i % 2]}`;
+            let angle =  parseFloat(data[3 * servoCount + 1]);
+            angle = _servos[i % 2] === 'servoOne' ? angle : -angle;
+            legToAngle(servoSelector, angle);
+            servoCount++;
+        }
+    }
+
+}
+
 /* ########################################
-
-    EXWCUTION LIST 
-
+    EXECUTION LIST 
    ######################################## */
 
 function rebuildExecutionListUI() {
+    var parentDiv = document.querySelector('#execution-list');
+    parentDiv.innerHTML = '';    
     executionList.map((element, index) => {
-        var parentDiv = document.querySelector('#execution-list');
 
-        if (!parentDiv.querySelector(`[data-id="${index}"]`)) {
+        //if (!parentDiv.querySelector(`[data-id="${index}"]`)) {
             var newDiv = document.createElement('div');
             newDiv.setAttribute('data-id', index);
             newDiv.textContent =  `${index} -  ${element}`;
+            // Set Button
+            var setServoButton = document.createElement('button');
+            setServoButton.innerHTML = '<span class="material-icons">settings</span>';
+            setServoButton.addEventListener('click', (e) => {
+                var servoData = element.split(',');
+                dataToLegs(servoData)
+            });
+            newDiv.appendChild(setServoButton);
+
+            // Set This row with leg settings
+            var setServoButton = document.createElement('button');
+            setServoButton.innerHTML = '<span class="material-icons">arrow_drop_down</span>';
+            setServoButton.addEventListener('click', (e) => {
+                const index = e.target.parentElement.parentElement.getAttribute('data-id');
+                const servoNewData = calculateLegMovement();
+                executionList[index] = `${servoNewData.join(',  ')}`;
+                rebuildExecutionListUI();
+            });
+            newDiv.appendChild(setServoButton);            
             // Append the new div to the parent div
             parentDiv.appendChild(newDiv);
-        }
+        //}
     });
+}
+
+function executeCommands() {
+    //pos = 0;
+    //var data = document.getElementById('text-data').value;
+    //sequence = data.split("\n");
+    loopThroughData();   
+}
+
+function sendData(data) {
+    data = data.split(' ').join('');
+    var url = 'http://localhost:8080/send-data?data=' + data;
+    console.log(url);
+    fetch(url)
+        .then(data => {
+            // do something with the data
+            console.log("DONE!");
+        });
+}
+
+
+var pos = 0;
+
+function loopThroughData() {
+    sendData(executionList[pos]);
+    if(pos < executionList.length - 1) {
+        pos ++;
+        setTimeout(() => {
+            loopThroughData();
+        }, 3000);
+    }
 }

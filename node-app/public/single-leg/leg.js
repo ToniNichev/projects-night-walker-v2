@@ -1,5 +1,6 @@
 var commandDown = false;
 var activeLeg = null;
+var activeSpeed = 1;
 
 var legs = {
   sceneLeft:
@@ -116,7 +117,9 @@ var angleAll = 0, angle = 0;
 document.addEventListener('mousemove', (e) => {
   if (commandDown == true) {
     document.getElementById('speedBar').style.width = e.clientX + 'px';
-    console.log(e.clientX);
+    activeSpeed = parseInt(e.clientX / 90);
+    activeSpeed = activeSpeed == 0 ? 1 : activeSpeed;
+    console.log(activeSpeed);
     return;
   }
 
